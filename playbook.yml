@@ -8,19 +8,19 @@
         state: present
       when:
       - ansible_distribution == "Ubuntu"
-     - name: install python-docker centos
-       yum:
+    - name: install python-docker centos
+      yum:
          name: python-docker
          state: present
-       when:
-       - ansible_distribution == "CentOS"
-     - name: pull image
-       docker_image:
+      when:
+      - ansible_distribution == "CentOS"
+    - name: pull image
+      docker_image:
          name: "{{ image }}"
          state: present
          force: yes
-     - name: create container
-       docker_container:
+    - name: create container
+      docker_container:
          recreate: yes
          name: docker_ansible
          state: started
